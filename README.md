@@ -10,6 +10,7 @@ This project is a simple desktop application built using Python and Tkinter, des
 📥 Input field for entering any weight value <br>
 🔘 Radio buttons to select conversion type: kgs ➡ lbs or lbs ➡ kgs <br>
 🎯 "Convert" button to execute the calculation <br>
+🧹 "Clear" button to reset the input and output fields <br>
 📢 Displays formatted output with units (e.g., "72.60 lbs") <br>
 ❌ Error handling for invalid (non-numeric) input <br>
 🪟 Clean and simple layout using Tkinter widgets <br>
@@ -32,11 +33,13 @@ This project is a simple desktop application built using Python and Tkinter, des
 
 🖼️ Builds GUI layout using labels, entries, buttons, and radio buttons <br>
 
-🔁 Uses .config() to dynamically update result text <br>
+🔁 Uses `.config()` to dynamically update result text <br>
 
 🧠 Performs conversion logic: kg → lbs and lbs → kg <br>
 
-❌ Handles ValueError when user input is not a number <br>
+🧹 Includes a **Clear** button to reset both input and output <br>
+
+❌ Handles `ValueError` when user input is not a number <br>
 
 📏 Uses precise float conversion and formatting for output display <br>
 
