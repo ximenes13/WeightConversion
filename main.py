@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 def convert_weight():
     try:
@@ -12,27 +13,57 @@ def convert_weight():
     except ValueError:
         result_label.config(text="Enter a valid number")
 
+def clear_fields():
+    entry.delete(0, tk.END)
+    result_label.config(text="")
+
 # Create main window
 root = tk.Tk()
 root.title("Weight Converter")
+root.geometry("400x300")
+root.resizable(False, False)
+
+#Style
+style = ttk.Style()
+style.theme_use("clam")
+
+# Title
+title_label = ttk.Label(root, text="Weight Converter", font=("Arial", 20, "bold"))
+title_label.pack(pady=10)
+
+# Input Frama
+input_frame = tk.Frame(root)
+input_frame.pack(pady=5)
 
 # Input field
-tk.Label(root, text="Enter weight:").grid(row=0, column=0, padx=10, pady=10)
-entry = tk.Entry(root)
-entry.grid(row=0, column=1)
+ttk.Label(input_frame, text="Enter weight:").grid(row=0, column=0, padx=5, pady=5)
+entry = ttk.Entry(input_frame, width=15)
+entry.grid(row=0, column=1, padx=5, pady=5)
 
 # Options Converter
 conversion = tk.StringVar(value="kgs_to_lbs")
-tk.Radiobutton(root, text="kgs_to_lbs", variable=conversion, value="kgs_to_lbs").grid(row=1, column=2, columnspan=2, sticky="w", padx=10)
-tk.Radiobutton(root, text="lbs_to_kgs", variable=conversion, value="lbs_to_kgs").grid(row=2, column=2, columnspan=2, sticky="w", padx=10)
+radio_frame = ttk.Frame(root)
+radio_frame.pack(pady=5)
+
+ttk.Radiobutton(radio_frame, text="kgs_to_lbs", variable=conversion, value="kgs_to_lbs").grid(row=1, column=2, columnspan=2, sticky="w", padx=10)
+ttk.Radiobutton(radio_frame, text="lbs_to_kgs", variable=conversion, value="lbs_to_kgs").grid(row=2, column=2, columnspan=2, sticky="w", padx=10)
+
+# Button Frame
+button_frame = ttk.Frame(root)
+button_frame.pack(pady=10)
 
 # Convert button
-convert_button = tk.Button(root, text="Convert", command=convert_weight)
-convert_button.grid(row=3, column=0, columnspan=2, pady=10)
+convert_button = ttk.Button(button_frame, text="Convert", command=convert_weight)
+convert_button.grid(row=0, column=0, padx=10)
 
-# Result
-result_label = tk.Label(root, text="", font=("Arial", 10))
-result_label.grid(row=4, column=0, columnspan=2, pady=10)
+# Clear button
+clear_button = ttk.Button(button_frame, text="Clear", command=clear_fields)
+clear_button.grid(row=0, column=1, padx=10)
+
+# Result (use tk.Label for better alignment control)
+result_label = tk.Label(button_frame, text="", font=("Arial", 18), anchor="center", bg="white", fg="black", width=20)
+result_label.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+
 
 # Run the app
 root.mainloop()
